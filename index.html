@@ -3,90 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FRNDTC Clothing</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Simple Chat Website</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        header { background-color: #333; color: white; text-align: center; padding: 1em; }
+        .chat-container { display: flex; justify-content: center; padding: 20px; }
+        .chat-box { width: 100%; max-width: 600px; border: 1px solid #ccc; padding: 10px; border-radius: 5px; }
+        .messages { height: 300px; border: 1px solid #ccc; overflow-y: scroll; padding: 10px; margin-bottom: 10px; }
+        .message { margin-bottom: 10px; }
+        .message p { margin: 0; }
+        .input-area { display: flex; }
+        .input-area input { flex-grow: 1; padding: 10px; }
+        .input-area button { padding: 10px; background-color: #333; color: white; border: none; cursor: pointer; }
+    </style>
 </head>
 <body>
     <header>
-        <div class="logo">
-            <img src="https://github.com/frndtc/overruns/blob/main/src/images/2%20-%20Copy.png?raw=true" alt="Logo">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#shoes">Shoes</a></li>
-                <li><a href="#clothing">Clothing</a></li>
-                <li><a href="#accessories">Accessories</a></li>
-                <li><a href="#sale">Sale</a></li>
-            </ul>
-        </nav>
+        <h1>Simple Chat Website</h1>
     </header>
-
-    <main>
-        <section class="hero">
-            <img src="https://github.com/frndtc/overruns/blob/main/src/images/Banner.png?raw=true" alt="Hero Image">
-            <div class="hero-text">
-                <h1>New Arrivals<br><br><br><br><br></h1>
-                <p>Explore the latest collection of sportswear and gear.</p>
-                <a href="#shoes" class="shop-now-btn">Shop Now</a>
-            </div>
-        </section>
-
-        <section id="shoes" class="product-category">
-            <h2>Featured</h2>
-            <div class="product-grid">
-                <div class="product-card" data-id="1">
-                    <img src="https://static.fendi.com/dam/is/image/fendi/FS9627AQFYF0GME_01?wid=950&hei=950&hash=ec73e0033cfabaf22e83325e01f217a8-18cd1fbe2a7&sw=950&sh=950" alt="Product 1">
-                    <h3>Fendi x Pokemon Hoodie</h3>
-                    <p>€1,095</p>
-                </div>
-                <div class="product-card" data-id="2">
-                    <img src="https://cdn-images.farfetch-contents.com/18/04/74/29/18047429_42547514_1000.jpg" alt="Product 2">
-                    <h3>Karl Lagerfeld</h3>
-                    <p>$161.99</p>
-                </div>
-                <div class="product-card" data-id="3">
-                    <img src="https://cdn-images.farfetch-contents.com/22/54/58/57/22545857_52514694_1000.jpg" alt="Product 3">
-                    <h3>Supreme Box Logo cotton hoodie</h3>
-                    <p>$545</p>
-                </div>
-                <!-- Add more products as needed -->
-            </div>
-        </section>
-        <!--
-            <section id="clothing" class="product-category">
-                <h2>Clothing</h2>
-                <div class="product-grid">
-                     Add clothing products similarly 
-                </div>
-            </section>
-
-            <section id="accessories" class="product-category">
-                <h2>Accessories</h2>
-                <div class="product-grid">
-                     Add accessories products similarly
-                </div>
-            </section>
-
-            <section id="sale" class="product-category">
-                <h2>Sale</h2>
-                <div class="product-grid">
-                     Add sale products similarly
-                </div>
-            </section>
-        -->
-    </main>
-
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2024 Frnd Ltd. All rights reserved.</p>
-            <div class="social-icons">
-                <a href="#"><img src="https://via.placeholder.com/20x20?text=FB" alt="Facebook"></a>
-                <a href="#"><img src="https://via.placeholder.com/20x20?text=TW" alt="Twitter"></a>
-                <a href="#"><img src="https://via.placeholder.com/20x20?text=IG" alt="Instagram"></a>
+    <div class="chat-container">
+        <div class="chat-box">
+            <div class="messages" id="messages"></div>
+            <div class="input-area">
+                <input type="text" id="messageInput" placeholder="Type your message...">
+                <button onclick="sendMessage()">Send</button>
             </div>
         </div>
-    </footer>
+    </div>
 
-    <script src="script.js"></script>
+    <script>
+        const messagesDiv = document.getElementById('messages');
+        const messageInput = document.getElementById('messageInput');
+
+        function sendMessage() {
+            const messageText = messageInput.value.trim();
+            if (messageText !== "") {
+                const message = document.createElement('div');
+                message.classList.add('message');
+                message.innerHTML = `<p>${messageText}</p>`;
+                messagesDiv.appendChild(message);
+                messageInput.value = "";
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            }
+        }
+
+        // Optional: Sending message on Enter key press
+        messageInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
 </body>
 </html>
